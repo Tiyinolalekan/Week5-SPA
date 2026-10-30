@@ -10,12 +10,12 @@ export type AppSettings =
     };
 
 export type PublicEnvironment = Readonly<
-  Record<string, string | boolean | undefined>
+  Record<string, string | boolean | undefined> //specifies keys and its values e.g., Record<key, value(s)>
 >;
 
 export function parseAppSettings(env: PublicEnvironment): AppSettings {
   const serviceValue = readString(env.VITE_REVIEWS_SERVICE).toLowerCase();
-  const reviewsService = serviceValue === '' ? 'fake' : serviceValue;
+  const reviewsService = serviceValue === '' ? 'fake' : serviceValue; //if serviceValue is empty return fake and if its not return the passed serviceValue from prev line
   if (reviewsService !== 'fake' && reviewsService !== 'http') {
     throw new Error(
       'VITE_REVIEWS_SERVICE must be either "fake" or "http" when set.',
@@ -23,6 +23,7 @@ export function parseAppSettings(env: PublicEnvironment): AppSettings {
   }
 
   const useSeedData = parseBoolean(
+    //value and its name e.g, true and VITE_USE_SEED_DATA
     env.VITE_USE_SEED_DATA,
     'VITE_USE_SEED_DATA',
   );

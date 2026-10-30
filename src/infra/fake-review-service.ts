@@ -14,7 +14,7 @@ export type FakeReviewServiceOptions = {
 
 export class FakeReviewService implements ReviewService {
   private readonly items: Review[];
-  private readonly generateId: () => string;
+  private readonly generateId: () => string; //A function that takes no parameters and returns a string
   private readonly now: () => Date;
   private idCounter = 0;
 
@@ -47,7 +47,7 @@ export class FakeReviewService implements ReviewService {
     }
 
     const stored = cloneReview(created.data);
-    this.items.unshift(stored);
+    this.items.unshift(stored); //adding created review to the beginning of the items array
     return { success: true, data: cloneReview(stored) };
   }
 
